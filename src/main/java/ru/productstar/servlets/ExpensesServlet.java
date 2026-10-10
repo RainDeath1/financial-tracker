@@ -4,7 +4,8 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import ru.productstar.servlets.model.Expense;
+import ru.productstar.servlets.model.Transaction;
+import ru.productstar.servlets.model.TransactionType;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -16,11 +17,11 @@ public class ExpensesServlet extends HttpServlet {
         var context = req.getServletContext();
 
         int freeMoney = (int)context.getAttribute("freeMoney");
-        var expenses = new ArrayList<Expense>((List)context.getAttribute("expenses"));
+        var expenses = new ArrayList<Transaction>((List)context.getAttribute("expenses"));
         for(var k : req.getParameterMap().keySet()) {
             int value = Integer.parseInt(req.getParameter(k));
             freeMoney -= value;
-            expenses.add(new Expense(k, value));
+            expenses.add(new Transaction(k, value, TransactionType.EXPENSE));
         }
 
         context.setAttribute("expenses", expenses);

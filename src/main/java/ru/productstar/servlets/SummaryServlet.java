@@ -5,12 +5,11 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import ru.productstar.servlets.model.Expense;
+import ru.productstar.servlets.model.Transaction;
+import ru.productstar.servlets.model.TransactionType;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 public class SummaryServlet extends HttpServlet {
 
@@ -21,7 +20,9 @@ public class SummaryServlet extends HttpServlet {
         var rent = Integer.valueOf(config.getInitParameter("rent"));
 
         context.setAttribute("freeMoney", salary - rent);
-        context.setAttribute("expenses",  new ArrayList<Expense>() {{ add(new Expense("rent", rent));}});
+        context.setAttribute("expenses",  new ArrayList<Transaction>() {{ add(new Transaction( "rent",
+                rent,
+                TransactionType.EXPENSE));}});
         context.log("[SummaryServlet] Init");
     }
 
