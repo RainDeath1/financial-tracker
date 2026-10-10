@@ -1,4 +1,4 @@
-package ru.productstar.servlets.model;
+package ru.productstar.model;
 
 public class Transaction {
 
