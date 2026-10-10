@@ -61,4 +61,11 @@ public class TransactionController {
 
         return "redirect:/summary";
     }
+
+    @GetMapping("/")
+    public String home(){
+        return "redirect:/summary";
+    }
+
+
 }
